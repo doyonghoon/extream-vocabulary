@@ -4,12 +4,12 @@ import com.spencerdo.vaca.adapter.MainService;
 import com.spencerdo.vaca.adapter.SqlAdapter;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.lang3.math.NumberUtils;
 import spark.ModelAndView;
 import spark.Spark;
 import spark.template.freemarker.FreeMarkerEngine;
-
-import static spark.Spark.get;
 
 public class Main {
   public static void main(String[] args) {
@@ -24,15 +24,16 @@ public class Main {
   private static void beginServer(int port, SqlAdapter sqlAdapter) {
     Spark.staticFileLocation("/assets");
     FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine();
-    Configuration freeMarkerConfiguration = new Configuration();
-    freeMarkerConfiguration.setTemplateLoader(new ClassTemplateLoader(MainService.class, "/"));
-    freeMarkerEngine.setConfiguration(freeMarkerConfiguration);
-    Spark.port(port);
-
-    get("/", (req, res) -> {
+    Configuration c = new Configuration();
+    c.setTemplateLoader(new ClassTemplateLoader(MainService.class, "/"));
+    freeMarkerEngine.setConfiguration(c);
+    Spark.setPort(port);
+    Spark.get("/", (req, res) -> {
       res.status(200);
       res.type("text/html");
-      return freeMarkerEngine.render(new ModelAndView(null, "assets/home.ftl"));
+      Map<String, Object> m = new HashMap<>();
+      return freeMarkerEngine.render(new ModelAndView(m, "assets/home.ftl"));
     });
+
   }
 }
