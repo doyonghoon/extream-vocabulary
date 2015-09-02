@@ -2,6 +2,7 @@ package com.spencerdo.vaca;
 
 import com.spencerdo.vaca.adapter.MainService;
 import com.spencerdo.vaca.adapter.SqlAdapter;
+import com.spencerdo.vaca.service.VocabularyService;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import java.util.HashMap;
@@ -35,5 +36,7 @@ public class Main {
       return freeMarkerEngine.render(new ModelAndView(m, "assets/home.ftl"));
     });
 
+    VocabularyService vocabularyService = new VocabularyService(sqlAdapter);
+    Spark.get("/vocabulary/create", vocabularyService.getCreateRoute(), vocabularyService.getSimpleJsonSuccessTransformer());
   }
 }

@@ -7,4 +7,12 @@ public class Vocabulary {
   private String word;
   private List<String> synonyms;
   private int frequencyLevel;
+
+  public Vocabulary() {
+
+  }
+
+  public Vocabulary(String word, List<String> synonyms, int frequency) {
+
+  }
 }
