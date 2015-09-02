@@ -20,6 +20,7 @@ public class SqlAdapter {
   }
 
   public boolean add(Vocabulary voca) {
+    System.out.println("voca: " + voca);
     getConnection();
     return true;
   }
@@ -34,10 +35,6 @@ public class SqlAdapter {
 
   public List<Vocabulary> getVocabulariesBySynonym(String synonym) {
     return null;
-  }
-
-  private void createVocabularTable() {
-
   }
 
   private static Connection mPostgresDatabaseConnection = null;
