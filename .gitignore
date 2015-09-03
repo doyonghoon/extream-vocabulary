@@ -118,3 +118,6 @@ tramp
 Session.vim
 .netrwhist
 *~
+
+.floo
+.flooignore

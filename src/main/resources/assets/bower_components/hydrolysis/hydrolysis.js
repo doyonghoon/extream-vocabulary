@@ -8139,7 +8139,7 @@ function hasTagName(name) {
  * Returns true if `regex.match(tagName)` finds a match.
  *
  * This will use the lowercased tagName for comparison.
- * 
+ *
  * @param  {RegExp} regex
  * @return {Boolean}
  */
@@ -8421,7 +8421,7 @@ function _reverseNodeWalkAll(node, predicate, matches) {
 }
 
 /**
- * Equivalent to `nodeWalkAll`, but only returns nodes that are either 
+ * Equivalent to `nodeWalkAll`, but only returns nodes that are either
  * ancestors or earlier cousins/siblings in the document.
  *
  * Nodes are returned in reverse document order, starting from `node`.
