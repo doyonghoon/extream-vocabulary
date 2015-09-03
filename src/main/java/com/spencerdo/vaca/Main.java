@@ -37,6 +37,7 @@ public class Main {
     });
 
     VocabularyService vocabularyService = new VocabularyService(sqlAdapter);
-    Spark.get("/vocabulary/create", vocabularyService.getCreateRoute(), vocabularyService.getSimpleJsonSuccessTransformer());
+    Spark.post("/vocabulary/create", vocabularyService.getCreateRoute(), vocabularyService.getSimpleJsonSuccessTransformer());
+    Spark.get("/vocabulary", vocabularyService.getLoadRoute(), vocabularyService.getSimpleJsonSuccessTransformer());
   }
 }

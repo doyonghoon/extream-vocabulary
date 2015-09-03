@@ -25,19 +25,41 @@ public class VocabularyService {
   }
 
   public Route getCreateRoute() {
-    adapter.add(new Vocabulary());
     return (req, res) -> {
-      res.status(200);
       res.type("application/json");
       DefaultJsonFormat f = new DefaultJsonFormat();
       f.setResult("fail");
       f.setResultCode(501);
+      res.status(501);
       Vocabulary v = parseVocabulary(req);
       if (v != null && adapter.add(v)) {
+        res.status(200);
         f.setResult("success");
         f.setResultCode(200);
         f.setData(v);
-        return f;
+      }
+      return f;
+    };
+  }
+
+  public Route getLoadRoute() {
+    return (req, res) -> {
+      res.type("application/json");
+      res.status(501);
+      DefaultJsonFormat f = new DefaultJsonFormat();
+      f.setResult("fail");
+      f.setResultCode(501);
+      QueryParamsMap m = req.queryMap();
+      if (m.hasKeys()) {
+        if (m.get("word") != null) {
+          Vocabulary v = adapter.getVocabulary(m.get("word").value());
+          if (v != null && v.getId() > 0) {
+            res.status(200);
+            f.setData(v);
+            f.setResultCode(200);
+            f.setResult("success");
+          }
+        }
       }
       return f;
     };
