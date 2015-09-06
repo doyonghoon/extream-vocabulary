@@ -17,25 +17,51 @@
 
 </head>
 <body unresolved class="fullbleed layout vertical">
-  <paper-header-panel main mode="waterfall-tall">
+  <dom-module id="main-layout">
+    <template>
+      <paper-drawer-panel>
+        <paper-header-panel drawer>
+          <paper-toolbar>
+            <div>Vocabulary</div>
+          </paper-toolbar>
+          <div class="separator">All items</div>
+          <paper-menu selectable="paper-icon-item" selected="0" role="menu" tabindex="0">
+            <iron-icon icon="inbox"></iron-icon>
+            <paper-icon-item>Browse All Vocabularies</paper-icon-item>
+          </paper-menu>
+        </paper-header-panel>
+        <paper-header-panel main mode="waterfall-tall">
 
-    <!-- Main Toolbar -->
-    <paper-toolbar id="mainToolbar">
-      <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-      <span class="flex"></span>
+          <!-- Main Toolbar -->
+          <paper-toolbar id="main-toolbar">
+            <paper-icon-button id="paper-toggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+            <span class="flex"></span>
 
-      <!-- Toolbar icons -->
-      <paper-icon-button icon="refresh"></paper-icon-button>
-      <paper-icon-button icon="search"></paper-icon-button>
+            <!-- Toolbar icons -->
+            <paper-icon-button on-tap="handleClick" id="refresh-menu" icon="refresh"></paper-icon-button>
+            <paper-icon-button id="search-menu" icon="search"></paper-icon-button>
+            <!-- Application name -->
+            <div class="middle paper-font-display2 app-name">Under construction</div>
 
-      <!-- Application name -->
-      <div class="middle paper-font-display2 app-name">Under construction</div>
-
-      <!-- Application sub title -->
-      <div class="bottom title"></div>
-
-    </paper-toolbar>
-    <div class="content"></div>
-  </paper-header-panel>
+            <!-- Application sub title -->
+            <div class="bottom title">bottom title goes here</div>
+          </paper-toolbar>
+          <div class="content"></div>
+        </paper-header-panel>
+      </paper-drawer-panel>
+    </template>
+    <script>
+      Polymer({
+        is: 'main-layout',
+        ready: function() {
+          console.log('ready');
+        },
+        handleClick: function() {
+          console.log("kick click");
+        }
+      });
+    </script>
+  </dom-module>
+  <main-layout></main-layout>
 </body>
 </html>
