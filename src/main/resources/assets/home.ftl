@@ -51,31 +51,14 @@
       </paper-drawer-panel>
       <iron-ajax
 	 auto
-	 id="ajax"
+	 id="vocalist"
 	 url="vocabulary"
 	 handle-as="json"
 	 on-response="hresponse"
 	 debounce-duration="300"></iron-ajax>
     </template>
-    <script>
-      Polymer({
-        is: 'main-layout',
-        ready: function() {
-      console.log('ready');
-      handleClick();
-        },
-        handleClick: function() {
-      console.log("kick click");
-      this.$.ajax.url = "http://google.com";
-      this.$.ajax.params = {};
-      this.$.ajax.generateRequest();
-      },
-      hresponse: function(req) {
-      console.log('hresponse invoked!');
-      console.log('res: ' + JSON.stringify(req.detail.response));
-      }
-      });
-    </script>
+    <!-- Basic functions -->
+    <script src="js/main.js"></script>
   </dom-module>
   <main-layout></main-layout>
 </body>
