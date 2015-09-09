@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,7 +45,20 @@ public class SqlAdapter {
   }
 
   public List<Vocabulary> getAllVocabularies() {
-    return null;
+    List<Vocabulary> result = new ArrayList<>();
+    try {
+      Statement p = getConnection().createStatement();
+      ResultSet rs = p.executeQuery("SELECT * FROM vocabulary");
+      while (rs.next()) {
+        Vocabulary v = createVocabulary(rs);
+        if (v != null) {
+          result.add(v);
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return result;
   }
 
   public Vocabulary getVocabulary(String word) {
@@ -53,17 +67,24 @@ public class SqlAdapter {
       p.setString(1, word);
       ResultSet rs = p.executeQuery();
       if (rs.next()) {
-        Vocabulary v = new Vocabulary();
-        v.setId(rs.getInt("id"));
-        v.setWord(rs.getString("word"));
-        v.setFrequency(rs.getInt("frequency"));
-        Array a = rs.getArray("synonyms");
-        String[] synonyms = (String[]) a.getArray();
-        v.setSynonyms(Arrays.asList(synonyms));
-        return v;
+        return createVocabulary(rs);
       }
-    } catch (Exception e) {
+    } catch (SQLException e) {
       e.printStackTrace();
+    }
+    return null;
+  }
+
+  private Vocabulary createVocabulary(ResultSet rs) throws SQLException {
+    if (rs != null) {
+      Vocabulary v = new Vocabulary();
+      v.setId(rs.getInt("id"));
+      v.setWord(rs.getString("word"));
+      v.setFrequency(rs.getInt("frequency"));
+      Array a = rs.getArray("synonyms");
+      String[] synonyms = (String[]) a.getArray();
+      v.setSynonyms(Arrays.asList(synonyms));
+      return v;
     }
     return null;
   }

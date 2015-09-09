@@ -60,6 +60,14 @@ public class VocabularyService {
             f.setResult("success");
           }
         }
+      } else {
+        List<Vocabulary> vocas = adapter.getAllVocabularies();
+        if (vocas != null) {
+          res.status(200);
+          f.setData(vocas);
+          f.setResultCode(200);
+          f.setResult("success");
+        }
       }
       return f;
     };
