@@ -49,16 +49,31 @@
           <div class="content"></div>
         </paper-header-panel>
       </paper-drawer-panel>
+      <iron-ajax
+	 auto
+	 id="ajax"
+	 url="vocabulary"
+	 handle-as="json"
+	 on-response="hresponse"
+	 debounce-duration="300"></iron-ajax>
     </template>
     <script>
       Polymer({
         is: 'main-layout',
         ready: function() {
-          console.log('ready');
+      console.log('ready');
+      handleClick();
         },
         handleClick: function() {
-          console.log("kick click");
-        }
+      console.log("kick click");
+      this.$.ajax.url = "http://google.com";
+      this.$.ajax.params = {};
+      this.$.ajax.generateRequest();
+      },
+      hresponse: function(req) {
+      console.log('hresponse invoked!');
+      console.log('res: ' + JSON.stringify(req.detail.response));
+      }
       });
     </script>
   </dom-module>
