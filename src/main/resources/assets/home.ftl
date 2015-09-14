@@ -46,7 +46,13 @@
             <!-- Application sub title -->
             <div class="bottom title">bottom title goes here</div>
           </paper-toolbar>
-          <div class="content"></div>
+          <div class="content">
+	    <template>
+	      <template is="dom-repeat" id="vocas" items="{{vocaItems}}">
+		<div>Word: <span>{{item.word}}</span></div>
+	      </template>
+	    </template>
+	  </div>
         </paper-header-panel>
       </paper-drawer-panel>
       <iron-ajax
