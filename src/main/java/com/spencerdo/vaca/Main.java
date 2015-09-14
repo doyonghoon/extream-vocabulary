@@ -33,7 +33,7 @@ public class Main {
       res.status(200);
       res.type("text/html");
       Map<String, Object> m = new HashMap<>();
-      return freeMarkerEngine.render(new ModelAndView(m, "assets/home.ftl"));
+      return freeMarkerEngine.render(new ModelAndView(m, "assets/index.ftl"));
     });
 
     VocabularyService vocabularyService = new VocabularyService(sqlAdapter);
