@@ -43,6 +43,13 @@ public class Main {
       return freeMarkerEngine.render(new ModelAndView(m, "assets/add.ftl"));
     });
 
+    Spark.get("/game", (req, res) -> {
+      res.status(200);
+      res.type("text/html");
+      Map<String, Object> m = new HashMap<>();
+      return freeMarkerEngine.render(new ModelAndView(m, "assets/game.ftl"));
+    });
+
     VocabularyService vocabularyService = new VocabularyService(sqlAdapter);
     Spark.post("/vocabulary/create", vocabularyService.getCreateRoute(), vocabularyService.getSimpleJsonSuccessTransformer());
     Spark.get("/vocabulary", vocabularyService.getLoadRoute(), vocabularyService.getSimpleJsonSuccessTransformer());

@@ -22,6 +22,7 @@ $(function() {
 	    console.log('failed result: ' + JSON.stringify(data));
 	});
     });
+    
     $("input#search").change(function(e) {
 	var q = $(this).val();
 	if (q.length > 0) {
@@ -32,7 +33,30 @@ $(function() {
 	    loadAllVocabulary();
 	}
     });
+
+    $('#start-game-button').click(function() {
+	vocaItems = [];
+	$('.demo-content').empty();
+	$.get('vocabulary').done(function(data) {
+	    for (i = 0; i < data.data.length; i++) {
+		vocaItems.push(data.data[i]);
+	    }
+	    showNextVocaItem(vocaItems[0]);
+	});
+    });
 });
+
+function showNextVocaItem(item) {
+    console.log('item: ' + JSON.stringify(item));
+    createGameWord(item).appendTo($('.demo-content'));
+};
+
+function createGameWord(item) {
+    var word = item.word;
+    return $('<h1 />', {
+	text: word
+    });
+}
 
 function loadAllVocabulary() {
     $.ajax('vocabulary')
