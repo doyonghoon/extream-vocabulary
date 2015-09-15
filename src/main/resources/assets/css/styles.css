@@ -184,3 +184,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 .add-textfield-layout {
     margin: 25px;
 }
+
+#voca-list {
+    margin-top: 25px;
+}
