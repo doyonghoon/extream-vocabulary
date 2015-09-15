@@ -18,6 +18,29 @@ $(function() {
 	})
 	.fail(function() {
 	    console.log('failed to load vocabulary');
+	});
+
+    $("form").submit(function(event) {
+	event.preventDefault();
+	console.log('submit');
+	var wordValue = $('input#word').val();
+	var frequencyValue = $('input#frequency').val();
+	var synonymsValue = $('input#synonyms').val();
+
+	$.post("vocabulary/create", {
+	    word: wordValue,
+	    frequency: frequencyValue,
+	    synonyms: synonymsValue
+	}).done(function(data) {
+	    console.log('success result: ' + JSON.stringify(data));
+	    $('input#word').val('');
+	    $('input#frequency').val('');
+	    $('input#synonyms').val('');
+	    $('.add-textfield-layout').removeClass('is-dirty');
+
+	}).fail(function(data) {
+	    console.log('failed result: ' + JSON.stringify(data));
+	});
     });
 });
 

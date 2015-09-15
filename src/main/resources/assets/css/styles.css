@@ -180,3 +180,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 .full-width {
     width: 100%;
 }
+
+.add-textfield-layout {
+    margin: 25px;
+}

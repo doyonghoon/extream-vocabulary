@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ultimate Vocabulary</title>
+    <title>Material Design Lite</title>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     
@@ -65,24 +65,14 @@
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Home</span>
+          <span class="mdl-layout-title">Add</span>
           <div class="mdl-layout-spacer"></div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search" />
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
-            </div>
-          </div>
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">About</li>
-            <li class="mdl-menu__item">Contact</li>
-            <li class="mdl-menu__item">Legal information</li>
+            <li class="mdl-menu__item">
+	      <a href="https://github.com/doyonghoon/extream-vocabulary">Github</a></li>
           </ul>
         </div>
       </header>
@@ -111,17 +101,22 @@
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
-	  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-	    <thead>
-	      <tr>
-		<th>Frequency</th>
-		<th class="mdl-data-table__cell--non-numeric full-width">Word</th>
-		<th class="mdl-data-table__cell--non-numeric">Synonyms</th>
-	      </tr>
-	    </thead>
-	    <tbody id="voca-table-body">
-	    </tbody>
-	  </table>
+	  <form class="add-form" action="#">
+	    <div class="mdl-textfield mdl-js-textfield add-textfield-layout">
+	      <input class="mdl-textfield__input" name="" type="text" value="" id="frequency" pattern="-?[0-9]*(\.[0-9]+)?"/>
+	      <label class="mdl-textfield__label" for="frequency">Frequency...</label>
+	      <span class="mdl-textfield__error">Input is not a number!</span>
+	    </div>
+	    <div class="mdl-textfield mdl-js-textfield add-textfield-layout">
+	      <input class="mdl-textfield__input" name="" type="text" value="" id="word"/>
+	      <label class="mdl-textfield__label" for="word">Word...</label>
+	    </div>
+	    <div class="mdl-textfield mdl-js-textfield add-textfield-layout">
+	      <input class="mdl-textfield__input" name="" type="text" value="" id="synonyms"/>
+	      <label class="mdl-textfield__label" for="synonyms">Synonyms separted by comma...</label>
+	    </div>
+	    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored">Add</button>
+	  </form>
         </div>
       </main>
     </div>
