@@ -47,16 +47,61 @@ $(function() {
 });
 
 function showNextVocaItem(item) {
-    console.log('item: ' + JSON.stringify(item));
-    createGameWord(item).appendTo($('.demo-content'));
+    var content = $('.demo-content');
+    var grid = $('<div />', {
+	class: 'mdl-grid'
+    });
+    var grid2 = $('<div />', {
+	class: 'mdl-grid'
+    });
+    var form = $('<form />', {
+	action: '#'
+    });
+    var textfield = createGameTextField();
+    var titleRow = createGridRow();
+    var fieldRow = createGridRow();
+    
+    form.append(textfield);
+    titleRow.append(createGameWord(item));
+    fieldRow.append(form);
+    
+    grid.append(titleRow);
+    grid2.append(fieldRow);
+    content.append(grid);
+    content.append(grid2);
 };
+
+function createGridRow() {
+    return $('<div />', {class: 'mdl-cell mdl-cell-12-col'});
+}
+
+function createGameTextField() {
+    var container = $('<div />', {
+	class: 'mdl-textfield mdl-js-textfield is-upgraded',
+	id: 'game-textfield',
+	'data-upgraded': ',MaterialTextfield'
+    });
+    var label = $('<label />', {
+	class: 'mdl-textfield__label',
+	for: 'game-textfield',
+	text: 'put a synonym'
+    });
+    var input = $('<input />', {
+	class: 'mdl-textfield__input',
+	type: 'text',
+	for: 'game-textfield'
+    });
+    input.appendTo(container);
+    label.appendTo(container);
+    return container;
+}
 
 function createGameWord(item) {
     var word = item.word;
     return $('<h1 />', {
 	text: word
     });
-}
+};
 
 function loadAllVocabulary() {
     $.ajax('vocabulary')
